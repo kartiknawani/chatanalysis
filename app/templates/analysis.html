@@ -1,0 +1,106 @@
+{% extends 'base.html' %} {% block title %} Report {% endblock title %} {% block
+body %}
+<div class="container" align="center">
+  <!-- This is General numberical stats -->
+  <h2>
+    There were <span style="color: #ff0000">{{total_emojis}}</span> Total Emojis
+    , <br />
+    <span style="color: #ff0000">{{unique_emojis}} </span>Unique Emojis,
+    <br /><span style="color: #ff0000">{{total}}</span> Total Messages and
+    <br />
+    a Media to Messages Ratio of
+    <span style="color: #ff0000">{{media_ratio}}%</span>
+  </h2>
+</div>
+
+<!-- This is emojis donut plot -->
+<div class="chart" id="donutgraph">
+  <script>
+    var graphs = {{ emoji_donut | safe}};
+    Plotly.plot('donutgraph', graphs, {});
+  </script>
+</div>
+
+<!-- This is active members bar chart -->
+<div class="chart" id="activeMembergraph">
+  <script>
+    var graphs = {{ activeMemberPlot | safe}};
+    Plotly.plot('activeMembergraph', graphs, {});
+  </script>
+</div>
+
+<!-- This is lazy members bar chart -->
+<div class="chart" id="lazyMembergraph">
+  <script>
+    var graphs = {{ lazyMemberPlot | safe}};
+    Plotly.plot('lazyMembergraph', graphs, {});
+  </script>
+</div>
+
+<!-- This is overall day activity line plot -->
+<div class="chart" id="bar_plot_time">
+  <script>
+    var graphs = {{ bar_plot_time | safe}};
+    Plotly.plot('bar_plot_time', graphs, {});
+  </script>
+</div>
+
+<!-- This is overall activity line plot -->
+<div class="chart" id="bar_plot_dates">
+  <script>
+    var graphs = {{ bar_plot_dates | safe}};
+    Plotly.plot('bar_plot_dates', graphs, {});
+  </script>
+</div>
+
+<!-- This is morning authors pie chart -->
+<div class="chart" id="morninggraph">
+  <script>
+    var graphs = {{ morning_plot | safe}};
+    Plotly.plot('morninggraph', graphs, {});
+  </script>
+</div>
+
+<!-- This is night authors pie chart -->
+<div class="chart" id="nightgraph">
+  <script>
+    var graphs = {{ night_plot | safe}};
+    Plotly.plot('nightgraph', graphs, {});
+  </script>
+</div>
+
+<!-- This is emoji addicts bar chart -->
+<div class="chart" id="emojiAdictsPlot">
+  <script>
+    var graphs = {{ emojiAdictsPlot | safe}};
+    Plotly.plot('emojiAdictsPlot', graphs, {});
+  </script>
+</div>
+
+<!-- These are festival/holidays authors stats (Bar chart) -->
+<div>
+  {% for key, value in holiday_authors.items() %}
+  <br />
+  <div class="chart" id="{{key}}">
+    <script>
+      var graphs = {{ value | safe}};
+      Plotly.plot({{ key }} , graphs, {});
+    </script>
+  </div>
+  {% endfor %}
+</div>
+
+<!-- These are festival/holidays emojis stats (donut plot) -->
+<div>
+  {% for key, value in holiday_freq_emojis.items() %}
+  <br />
+  <div class="chart" id="{{key}}">
+    <script>
+      var graphs = {{ value | safe}};
+      Plotly.plot({{ key }} , graphs, {});
+    </script>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock body %}
