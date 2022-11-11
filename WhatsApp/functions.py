@@ -37,9 +37,6 @@ class ExtractDataFrame:
         return file
 
     def is_newEntry(self, line: str) -> bool:
-        '''
-        This function returns if the line is a new message or continuation of the previous one
-        '''
         date_time = '([0-9]+)(\/)([0-9]+)(\/)([0-9]+), ([0-9]+):([0-9]+)[ ]?(AM|PM|am|pm)? -'
         test = re.match(date_time, line)
         if test is not None:
@@ -48,9 +45,6 @@ class ExtractDataFrame:
             return False
 
     def seperateData(self, line: str) -> tuple:
-        '''
-        This function cleans the line and seperates the author, date, time and message from the text
-        '''
         entry_data = line.split(' - ')
         date, time = entry_data[0].split(', ')
         authMsg = entry_data[1].split(':')
@@ -62,9 +56,6 @@ class ExtractDataFrame:
             return None
 
     def process(self):
-        '''
-        This functions aggregates all the data from different lines
-        '''
         f = self.load_file()
         f.readline()
         full_message = []
@@ -94,10 +85,6 @@ class ExtractDataFrame:
         f.close()
 
     def emojis(self, msg: str) -> list:
-        '''
-        This function returns the list of emojis present in a message. 
-        Note: This will recoginize some of the hindi characters as emojis.
-        '''
         final_list = []
         for char in msg:
             if char in emoji.UNICODE_EMOJI:
@@ -109,9 +96,6 @@ class ExtractDataFrame:
             return final_list
 
     def dataframe(self) -> object:
-        '''
-        This function returns processed data in Pandas dataframe
-        '''
         df = pd.DataFrame(self.data, columns=[
                           'Date', 'Time', 'Author', 'Message'])
         df['Date'] = pd.to_datetime(df.Date)
@@ -121,32 +105,7 @@ class ExtractDataFrame:
 
 
 class GenerateStats:
-
-    '''
-    This class of functions will be used to generate stats for any dataframe. 
-    Full Group chats, any specific timeline or explicitly mentioned.
-    Parameters:
-        df (dataframe object): In all functions, only this needs to be passed.
-    Functions:
-        Note: Object here refers to self
-
-        mediaRatio(object, dataframe) -> int
-        totalEmojis(object, dataframe) -> int
-        uniqueEmojis(object, dataframe) -> int
-        frequentEmojis(object, dataframe) -> dataframe
-        activeMembers(object, dataframe) -> dataframe
-        lazyMembers(object, dataframe) -> dataframe
-        activityOverDates(object, dataframe) -> dataframe
-        activityOverTime(object, dataframe) -> dataframe
-        holidaysDataFrame(object, dataframe) -> dict
-        nightOwls_earlyBirds(object, dataframe) -> dict
-        emojiCon_Emojiless(object, dataframe) -> dict
-    '''
-
     def __init__(self):
-        '''
-        Here all the important initializations are done
-        '''
         self.holidays_dict = {datetime.date(2020, 1, 14): 'Makar Sankranti / Pongal',
                               datetime.date(2020, 1, 26): 'Republic Day',
                               datetime.date(2020, 8, 15): 'Independence Day',
@@ -155,28 +114,15 @@ class GenerateStats:
                               }
 
     def mediaRatio(self, df) -> int:
-        '''
-        This function returns the percentage of messages which are media
-        '''
         return ((df[df['Message'] == ' <Media omitted> '].Message.count()) / (df.Message.count()))*100
 
     def totalEmojis(self, df) -> int:
-        '''
-        This function returns the total number of emojis in the group
-        '''
         return len([i for j in df.Emojis[df.Emojis != 0] for i in j])
 
     def uniqueEmojis(self, df) -> int:
-        '''
-        This function returns the number unique emojis sent.
-        '''
         return len(set([i for j in df.Emojis[df.Emojis != 0] for i in j]))
 
     def frequentEmojis(self, df) -> object:
-        '''
-        This function returns dataframe object consisting of frequent emojis of the group.
-        If there are less than 10 frequent emojis then whole dataframe is returned
-        '''
         emojiList = [i for j in df.Emojis[df.Emojis != 0] for i in j]
         emoji_dict = dict(Counter(emojiList))
         emoji_dict = sorted(emoji_dict.items(),
@@ -188,10 +134,6 @@ class GenerateStats:
             return emoji_df[:10]
 
     def activeMembers(self, df) -> object:
-        '''
-        This function returns dataframe object consisting of active members of the group.
-        If there are less than 8 active members then whole dataframe is returned
-        '''
         authors = pd.DataFrame(df.Author.value_counts())
         authors = authors.rename(columns={'Author': 'Message Count'})
         authors.index.name = 'Author'
@@ -201,10 +143,6 @@ class GenerateStats:
             return authors[:8]
 
     def lazyMembers(self, df) -> object:
-        '''
-        This function returns dataframe object consisting of lazy members of the group.
-        If there are less than 5 lazy members then whole dataframe is returned
-        '''
         authors = pd.DataFrame(df.Author.value_counts())
         authors = authors.rename(columns={'Author': 'Message Count'})
         authors.index.name = 'Author'
@@ -214,28 +152,16 @@ class GenerateStats:
             return authors[-5:][::-1]
 
     def activityOverDates(self, df) -> object:
-        '''
-        This function returns dataframe of activity of the group over the 
-        all the dates
-        '''
         result = df.groupby('Date').sum()
         result = result.rename(columns={'Emoji_num': 'Number of Messages'})
         return result
 
     def activityOverTime(self, df) -> object:
-        '''
-        This function returns dataframe of activity of the group over the 
-        all whole day
-        '''
-
         result = df.groupby('Time').sum()
         result = result.rename(columns={'Emoji_num': 'Number of Messages'})
         return result
 
     def holidaysDataFrame(self, df) -> dict:
-        '''
-        Returns dict of dataframes which matches the holidays date pattern
-        '''
         df_dict = {}
         for date, event in self.holidays_dict.items():
             temp = df[(df.Date.dt.day == date.day) &
@@ -245,12 +171,6 @@ class GenerateStats:
         return df_dict
 
     def nightOwls_earlyBirds(self, df) -> dict:
-        '''
-        This function will returns dict of two dataframes with authors who send most
-        messages in night between 11 pm to 3 am and between 6 am to 9 am in the
-        morning.
-        If there are less than 5 members then whole dataframe is returned        
-        '''
         df_dict_n = {}
         temp = pd.to_datetime(df.Time)
         morning_mask = (temp.dt.hour >= 6) & (temp.dt.hour <= 9)
@@ -273,11 +193,6 @@ class GenerateStats:
         return df_dict_n
 
     def emojiCon_Emojiless(self, df) -> dict:
-        '''
-        This function will returns dict of two dataframes with authors who send most
-        emojis and least emojis.
-        If there are less than 6 members then whole dataframe is returned        
-        '''
         df_dict_n2 = {}
         temp2 = pd.DataFrame(df.groupby(
             'Author').Emoji_num.sum().sort_values(ascending=False))
