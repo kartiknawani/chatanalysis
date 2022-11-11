@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scaled = 1.0">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/logo.css">
+
+    <script type="text/javascript" src="{{ url_for('static', filename = 'js/validateForm.js') }}">
+
+    </script>
+    <title>Sign Up!</title>
+</head>
+<body class="" bgcolor=#FFFAD7>
+
+    <header class="text-gray-500 bg-gray-900 body-font">
+        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center;">
+          <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0;">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-green-500 rounded-full" viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </svg>
+            <span class="ml-3 text-xl" style="position: relative; left: 40px;">Sign Up!</span>
+          </a>
+
+          <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0" style=" position: absolute; left: 41%; transform: translateX(-50%);">
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 600 300" class="text-gray-500 bg-gray-900 body-font" id="yaha">
+
+          <!-- Symbol -->
+          <symbol id="s-text">
+            <text text-anchor="middle"
+                    x="50%" y="50%" dy=".35em">
+                LOTTERY
+             </text>
+          </symbol>
+        
+          <!-- Duplicate symbols -->
+          <use xlink:href="#s-text" class="text"
+                    ></use>
+          <use xlink:href="#s-text" class="text"
+                    ></use>
+          <use xlink:href="#s-text" class="text"
+                    ></use>
+          <use xlink:href="#s-text" class="text"
+                    ></use>
+          <use xlink:href="#s-text" class="text"
+                    ></use>
+        
+        </svg>
+      </a>
+
+
+          <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center;">
+            <!-- <a href="/" class="inline-flex items-center bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0 hover:text-white"  style="margin-right: 5px; height: 40px;" >Home</a>  -->
+          </nav>
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </button>
+        </div> 
+      </header>
+
+      <section class="text-gray-500 bg-gray-900 body-font " style="align-items: center;align-self: center; align-content: center;"></section>
+        <div class="container px-5 py-24 mx-auto flex flex-wrap items-center">
+         	<div class="lg:w-2/6 md:w-1/2 bg-gray-800 rounded-lg p-8 flex flex-col w-full mt-10 md:mt-0" style="position:relative; left: 50%; transform: translateX(-50%); height: 650px; width: 400px; background-color:#377D71;">
+         		<h2 class="text-white text-lg font-medium title-font mb-5" style="text-align: center;">Sign Up!</h2>
+         		<form action="/SignIn" method="POST" onsubmit="return validate()">
+         		 <input class="bg-gray-900 rounded border text-black border-gray-900 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4" name="firstName" placeholder="First Name" type="text" style="position: fixed; left: 50%; top: 15%; width: 240px; transform: translateX(-50%); background-color: #E3FCBF;" required>
+         		  <input class="bg-gray-900 rounded border text-black border-gray-900 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4" name="lastName" placeholder="Last Name" type="text" style="position: fixed; left: 50%; width: 240px; top: 25%; transform: translateX(-50%);background-color: #E3FCBF " required>
+         		   <input class="bg-gray-900 rounded border text-black border-gray-900 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4" name="dob" placeholder="Date of Birth" type="text" onfocus="(this.type='date')" style="position: fixed; left: 50%; top: 35%; transform: translateX(-50%); width: 240px; background-color: #E3FCBF" required>
+         		   <input class="bg-gray-900 rounded border text-black border-gray-900 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4" name="email" placeholder="E-mail" type="email" style="position: fixed; left: 50%; width: 240px; top: 45%; transform: translateX(-50%); background-color: #E3FCBF" required>
+         		   <input class="bg-gray-900 rounded border text-black border-gray-900 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4" name="password" placeholder="Password" id="password" type="password" style="position: fixed; left: 50%; width: 240px; top: 55%; transform: translateX(-50%); background-color: #E3FCBF" required>
+         		   <input class="bg-gray-900 rounded border text-black border-gray-900 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4" name="cpassword" placeholder="Confirm Password" id="cpassword" type="password" style="position: fixed; left: 50%; width: 240px; top: 65%; transform: translateX(-50%); background-color: #E3FCBF" required>
+         		   	<input type="checkbox" id="terms" name="terms" value="terms" style="position: fixed; left: 18%; top: 75.5%;  " label = "I agree to the terms" required>
+                <p style="position: fixed;top: 74.5%; left: 22%;">I agree to the <a style="text-decoration: underline; " class="hover:text-white">Terms & Conditions</p></a>
+                <!-- <i style="text-align: center; position: fixed; top: 78.5%; left: 50%; transform: translateX(-50%);"> {{error}}</i> <br> -->
+                <button type="submit" value="Register" class="text-black bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg" style="position: fixed;left: 50%; transform: translateX(-50%); top: 83%;" >Register</button><br>
+                <a href="SignIn.html" style="position: fixed; top: 91%; left: 60px; text-decoration: underline; " class="hover:text-white">Already have an account? Login here</a>
+         		</form>
+          </div>
+        </div>
+      </section>
+    </body>
+    </html>

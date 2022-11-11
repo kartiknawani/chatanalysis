@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scaled = 1.0">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/logo.css">
+    <title>Sign In</title>
+</head>
+<body class="bg-white-900" bgcolor=#FFFAD7>
+
+  <header class="text-white-500 bg-gray-900 body-font">
+    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+    	<a class="flex title-font font-medium items-center text-white mb-4 md:mb-0">
+            <svg xmlns="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-green-500 rounded-full" viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </svg>
+            <span class="ml-3 text-xl" style="position: relative; left: 40px;">Sign In</span>
+          </a>
+      <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0" style=" position: absolute; left: 41%; transform: translateX(-50%);">
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 600 300" class="text-white-500 bg-white-900 body-font" id="yaha">
+
+          <!-- Symbol -->
+          <symbol id="s-text">
+            <text text-anchor="middle"
+                    x="50%" y="50%" dy=".35em">
+                LOTTERY
+             </text>
+          </symbol>
+        
+          <!-- Duplicate symbols -->
+          <use xlink:href="#s-text" class="text"
+                    ></use>
+          <use xlink:href="#s-text" class="text"
+                    ></use>
+          <use xlink:href="#s-text" class="text"
+                    ></use>
+          <use xlink:href="#s-text" class="text"
+                    ></use>
+          <use xlink:href="#s-text" class="text"
+                    ></use>
+        
+        </svg>
+      </a>
+      <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+        <!-- <a href="/" class="inline-flex items-center bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0 hover:text-white"  style="margin-right: 5px; height: 40px;" >Home</a>  -->
+      </nav>
+     
+      
+          <path d="M5 12h14M12 5l7 7-7 7"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+      <section class="text-gray-500 bg-white-900 body-font">
+        <div class="container  mx-auto flex flex-wrap items-center" >
+                <div class="lg:w-2/6 md:w-1/2 bg-gray-800 rounded-lg p-8 flex flex-col w-full mt-10 md:mt-0" style="position:relative; left: 50%; top: 80px;  transform: translateX(-50%); align-items: center; height: 350px; width: 300px;background-color:#377D71;">
+            <h2 class="text-white text-lg font-medium title-font mb-5" style="text-align: center;">Sign In!</h2>
+            <form action="/Signup" method="POST">
+            <input class="bg-gray-900 rounded border text-black border-gray-900 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4" name="email" placeholder="Email" type="email" style="position: fixed;left: 50%; top: 25%; transform: translateX(-50%); background-color: #E3FCBF;" required class="validate">
+            <input class="bg-gray-900 rounded border text-black border-gray-900 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4" name ="password" placeholder="Password" type="password" style="position: fixed;left: 50%; top: 40%; transform: translateX(-50%); background-color: #E3FCBF;" required class="validate" autocomplete="off">
+            <!-- <p style="text-align: center; position: fixed; top: 55%; left: 60px;"> {{error}}</p> -->
+            <button class="text-black bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg" style="position: fixed;left: 50%; top: 65%; transform: translateX(-50%); " >Log In</button><br>
+            <a href="SignUp.html" style="position: fixed; top: 80%; left: 60px; text-decoration: underline;"> Not a User? Register here</a>
+            </form>
+          </div>
+        </div>
+      </section>
+    </body>
+    </html>
