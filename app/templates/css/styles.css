@@ -65,7 +65,7 @@ body
   text-align: center;
 }
 
-/Navigation Bar/
+
 
 .navbar
 {
@@ -115,13 +115,13 @@ body
   background-color: #fff
 }
 
-/Download Button/
+
 .download-button
 {
   margin:5% 3% 5% 0;
 }
 
-/Title Image/
+
 .title-image
 {
   width:20%;
@@ -130,7 +130,7 @@ body
   right:7%;
 }
 
-/Features-Section/
+
 
 #features
 {
