@@ -1,5 +1,44 @@
 <!DOCTYPE html>
 <html lang="en"><body>
+  <style>
+      table.dataframe,
+      .dataframe th,
+      .dataframe td {
+        border: none;
+        border-bottom: 1px solid #c8c8c8;
+        border-collapse: collapse;
+        text-align: left;
+        padding: 10px;
+        margin-bottom: 40px;
+        font-size: 0.9em;
+      }
+
+      tr:nth-child(odd) {
+        background-color: #eee;
+      }
+
+      tr:nth-child(even) {
+        background-color: #fff;
+      }
+
+      tr:hover {
+        background-color: #ffff99;
+      }
+      .carousel-indicators .active {
+        background-color: #f00;
+      }
+      .carousel-control-next-icon:after {
+        content: ">";
+        font-size: 55px;
+        color: red;
+      }
+
+      .carousel-control-prev-icon:after {
+        content: "<";
+        font-size: 55px;
+        color: red;
+      }
+  </style>
   <div class="container" align="center">
     <!-- This is General numberical stats -->
     <h2>
