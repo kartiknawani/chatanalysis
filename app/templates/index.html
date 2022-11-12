@@ -241,16 +241,17 @@ body
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
 
     <ol class="navbar-nav ml-auto">
-         <class="nav-item  {% block signupactive %} {% endblock signupactive %}">
+         <class="nav-item">
             <a class="nav-item" href="SignUp">Sign Up</a>
-         <class="nav-item  {% block signinactive %} {% endblock signinactive %}">
+         <class="nav-item">
             <a class="nav-item" href="SignIn">Sign In</a>
             <i class="fa-solid fa-user"></i>
     </ol>
     </div>
     </nav>
 
-
+ <!-- Body Block -->
+    {% block body %} {% endblock body %}
 
 
     <!-- Title -->
@@ -332,9 +333,6 @@ body
     <p>© Copyright 2022 WhatsApp Analyzer</p>
     </div>
   </footer>
-
- <!-- Body Block -->
-    {% block body %} {% endblock body %}
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
